@@ -14,6 +14,9 @@ ALTER TABLE Prescription
 DROP VIEW vw_DoctorPrescriptionDrugs;
 DROP FUNCTION GetAgeFromDOB;
 
+-- Drop users
+DROP USER IF EXISTS ddladmin;  
+
 -- Finally Drop the Tables
 -- WARNING: THIS CANNOT BE UNDONE!
 DROP TABLE Patient;
@@ -23,4 +26,3 @@ DROP TABLE Room;
 DROP TABLE Drug;
 DROP TABLE Visit;
 DROP TABLE Prescription;
-
