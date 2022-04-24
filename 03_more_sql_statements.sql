@@ -12,7 +12,7 @@ GO
 -- Which Patients have the most number of visits?
 WITH PatientVisits AS
 (
-  SELECT PatientID, COUNT(*) as NumberOfVisits, MAX(VisitDate) as LastVisitDate
+  SELECT PatientID, COUNT(*) as NumberOfVisits, FORMAT(MAX(VisitDate), 'yyyy-MM-dd') as LastVisitDate
   FROM Visit
   GROUP BY PatientID
 )
@@ -43,6 +43,8 @@ GO
 
 -- Get a list of Patients with their Age in years
 -- by calling the GetAgeFromDOB Function
+-- ordered by oldest to youngest
 SELECT FirstName, LastName, Email, PhoneNumber, FORMAT(DateOfBirth, 'yyyy-MM-dd') as DateOfBirth,  
     [dbo].GetAgeFromDOB(DateOfBirth) as AgeInYears
-FROM Patient;
+FROM Patient
+ORDER BY AgeInYears DESC;
