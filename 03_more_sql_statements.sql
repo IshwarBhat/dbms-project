@@ -16,9 +16,11 @@ WITH PatientVisits AS
   FROM Visit
   GROUP BY PatientID
 )
-SELECT FirstName, LastName, PhoneNumber, Email, NumberOfVisits, LastVisitDate
+SELECT FirstName, LastName, [dbo].GetAgeFromDOB(DateOfBirth) as AgeInYears, NumberOfVisits, LastVisitDate,
+  MedicalHistory.Diseases, MedicalHistory.Allergies
   FROM PatientVisits
   JOIN Patient ON PatientVisits.PatientID = Patient.ID
+  JOIN MedicalHistory ON PatientVisits.PatientID = MedicalHistory.PatientID
   ORDER BY NumberOfVisits DESC
 ;
 
